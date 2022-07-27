@@ -1,17 +1,17 @@
-# aws-postgres-access
+# aws-sqlserver-access
 
-Nullstone capability to grant access for a postgres database to a service.
+Nullstone capability to grant access for a sql server database to a service.
 
 ### Secrets
 
-- `POSTGRES_PASSWORD`
-- `POSTGRES_URL`
+- `SQLSERVER_PASSWORD`
+- `SQLSERVER_URL`
 
 ### Env Vars
 
-- `POSTGRES_USER`
-- `POSTGRES_DB`
+- `SQLSERVER_USER`
+- `SQLSERVER_DB`
 
 ### Security Group Rules
 
-- `tcp:5432` <=> `postgres` connection
+- `tcp:1433` <=> `sqlserver` connection
