@@ -1,0 +1,15 @@
+org_name: nullstone
+name: aws-sqlserver-access
+friendly_name: Sql Server Access
+description: Grants an application access to a newly-created sql server database managed by AWS
+category: capability
+subcategory: datastores
+provider_types:
+    - aws
+platform: sqlserver
+subplatform: ""
+type: capability/sqlserver-access/aws
+appCategories:
+    - container
+    - serverless
+is_public: true
