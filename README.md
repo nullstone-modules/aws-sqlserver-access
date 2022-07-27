@@ -9,6 +9,7 @@ Nullstone capability to grant access for a sql server database to a service.
 
 ### Env Vars
 
+- `SQLSERVER_HOST`
 - `SQLSERVER_USER`
 - `SQLSERVER_DB`
 
