@@ -4,6 +4,14 @@ output "env" {
       name  = "SQLSERVER_HOST"
       value = local.db_subdomain
     },
+    {
+      name  = "SQLSERVER_ENDPOINT"
+      value = local.db_endpoint
+    },
+    {
+      name  = "SQLSERVER_PORT"
+      value = local.db_port
+    }
     /*
     These are commented out because we haven't built the db-admin functionality for sql server yet
     So without the db-admin, these values aren't generated and granted access

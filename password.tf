@@ -1,3 +1,5 @@
+/*
+This is commented out until we build out the db-admin functionality for sql server
 resource "random_password" "this" {
   // Master password length constraints differ for each database engine. For more information, see the available settings when creating each DB instance.
   length  = 16
@@ -7,3 +9,4 @@ resource "random_password" "this" {
   // '%' is an acceptable character but causes confusion with url encoding, let's drop it
   override_special = "!#$&*()-_=+[]{}<>:?"
 }
+*/

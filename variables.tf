@@ -8,14 +8,17 @@ EOF
   default = {}
 }
 
+/*
+This isn't relevant until we build out the db-admin features for sql server
 variable "database_name" {
   type        = string
   description = "Name of database to create in Postgres cluster. If left blank, uses app name."
   default     = ""
 }
+*/
 
 locals {
   security_group_id = var.app_metadata["security_group_id"]
   username          = local.resource_name
-  database_name     = coalesce(var.database_name, local.block_name)
+  // database_name     = coalesce(var.database_name, local.block_name)
 }

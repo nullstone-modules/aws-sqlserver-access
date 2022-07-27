@@ -1,5 +1,7 @@
 // Create Database will create a database
 // Additionally, a role of the same name will be created and given "owner" over database
+/*
+This is commented out until we develop the db-admin functionality for sql server
 data "aws_lambda_invocation" "create-database" {
   function_name = local.db_admin_func_name
 
@@ -38,3 +40,4 @@ data "aws_lambda_invocation" "create-db-access" {
 
   depends_on = [data.aws_lambda_invocation.create-user]
 }
+*/
