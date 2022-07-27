@@ -37,10 +37,6 @@ output "secrets" {
       value = random_password.this.result
     },
     {
-      name  = "SQLSERVER_URL"
-      value = "mssql://${local.db_endpoint}/${urlencode(local.database_name)}:${local.db_port};user=${urlencode(local.username)};password=${urlencode(random_password.this.result)};encrypt=true"
-    },
-    {
       name  = "SQLSERVER_DSN"
       value = "Data Source=${local.db_endpoint};Initial Catalog=${urlencode(local.database_name)};User Id=${urlencode(local.username)};Password=${urlencode(random_password.this.result)};Encrypt=true"
     }
