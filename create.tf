@@ -1,43 +1,44 @@
-// Create Database will create a database
-// Additionally, a role of the same name will be created and given "owner" over database
-/*
-This is commented out until we develop the db-admin functionality for sql server
-data "aws_lambda_invocation" "create-database" {
-  function_name = local.db_admin_func_name
+resource "aws_lambda_invocation" "database" {
+  function_name   = local.db_admin_func_name
+  lifecycle_scope = "CRUD"
 
   input = jsonencode({
-    type = "create-database"
-    metadata = {
-      databaseName = local.database_name
+    type = "databases"
+    data = {
+      name        = local.database_name
+      useExisting = true
     }
   })
 }
 
-data "aws_lambda_invocation" "create-user" {
-  function_name = local.db_admin_func_name
+resource "aws_lambda_invocation" "login" {
+  function_name   = local.db_admin_func_name
+  lifecycle_scope = "CRUD"
 
   input = jsonencode({
-    type = "create-user"
-    metadata = {
-      username = local.username
-      password = random_password.this.result
+    type = "logins"
+    data = {
+      name        = local.username
+      password    = random_password.this.result
+      useExisting = true
+    }
+  })
+}
+
+resource "aws_lambda_invocation" "access" {
+  function_name   = local.db_admin_func_name
+  lifecycle_scope = "CRUD"
+
+  input = jsonencode({
+    type = "database_access"
+    data = {
+      database = local.database_name
+      login    = local.username
     }
   })
 
-  depends_on = [data.aws_lambda_invocation.create-database]
+  depends_on = [
+    aws_lambda_invocation.database,
+    aws_lambda_invocation.login,
+  ]
 }
-
-data "aws_lambda_invocation" "create-db-access" {
-  function_name = local.db_admin_func_name
-
-  input = jsonencode({
-    type = "create-db-access"
-    metadata = {
-      databaseName = local.database_name
-      username     = local.username
-    }
-  })
-
-  depends_on = [data.aws_lambda_invocation.create-user]
-}
-*/
