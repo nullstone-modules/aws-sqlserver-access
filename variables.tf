@@ -14,8 +14,25 @@ variable "database_name" {
   default     = ""
 }
 
+variable "trust_server_certificate" {
+  type        = bool
+  default     = false
+  description = "Enables 'TrustServerCertificate' in the connection string DSN"
+}
+
+variable "persist_security_info" {
+  type        = bool
+  default     = false
+  description = "Enables 'Persist Security Info' in the connection string DSN"
+}
+
 locals {
   security_group_id = var.app_metadata["security_group_id"]
   username          = local.resource_name
   database_name     = coalesce(var.database_name, local.block_name)
+
+  extra_dsn = join("", compact([
+    var.trust_server_certificate ? ";TrustServerCertificate=False" : "",
+    var.persist_security_info ? ";Persist Security Info=True" : "",
+  ]))
 }

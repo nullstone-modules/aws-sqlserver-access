@@ -31,7 +31,7 @@ output "secrets" {
     },
     {
       name  = "SQLSERVER_DSN"
-      value = "Data Source=${local.db_endpoint};Initial Catalog=${local.database_name};User Id=${local.username};Password=${random_password.this.result};Encrypt=true"
+      value = "Data Source=${local.db_subdomain},${local.db_port};Initial Catalog=${local.database_name};User Id=${local.username};Password=${random_password.this.result};Encrypt=true${local.extra_dsn}"
     }
   ]
 }
