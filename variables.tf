@@ -32,7 +32,7 @@ locals {
   database_name     = coalesce(var.database_name, local.block_name)
 
   extra_dsn = join("", compact([
-    var.trust_server_certificate ? ";TrustServerCertificate=False" : "",
+    var.trust_server_certificate ? ";TrustServerCertificate=True" : "",
     var.persist_security_info ? ";Persist Security Info=True" : "",
   ]))
 }
